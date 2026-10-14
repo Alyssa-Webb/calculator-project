@@ -11,11 +11,11 @@ A four-function calculator written in SystemVerilog and implemented on the [Bool
 | `MEM.sv` | Stores the operands, operator and result |
 | `Top.sv` | Connects the memory and ALU |
 | `*_tb.sv` | Testbenches |
+| `Makefile` | Runs the simulations |
 
 ## ALU
 
 Takes two 11-bit signed operands and a 2-bit operator, and outputs an 11-bit signed result.
-
 
 | Operator | Operation |
 |---|---|
@@ -42,15 +42,17 @@ Stores the two operands, the operator and the result so they persist across key 
 
 ## Simulation
 
-### Icarus Verilog (macOS / Linux)
+Requires [Icarus Verilog](https://steveicarus.github.io/iverilog/) and [Surfer](https://surfer-project.org) (or GTKWave).
+
+| Command | What it does |
+|---|---|
+| `make` | Runs all three simulations |
+| `make alu` | Runs only the ALU simulation (also `make mem`, `make top`) |
+| `make clean` | Deletes the `build` folder |
+
+Waveforms are saved in the `build` folder, one per simulation:
 
 ```
-iverilog -g2012 -o sim MEM.sv ALU.sv Top.sv Top_tb.sv
-vvp sim
-```
-
-The testbenches write `wave.vcd`, which can be opened in [Surfer](https://surfer-project.org) or GTKWave:
-
-```
-surfer wave.vcd
+surfer build/mem.vcd
+surfer build/top.vcd
 ```
