@@ -13,6 +13,9 @@ module ALU_tb;
     );
 
     initial begin
+        $dumpfile("wave.vcd");
+        $dumpvars(0, ALU_tb);
+        
         // Test addition (00)
         Operand1 = 11'd10;
         Operand2 = 11'd5;
