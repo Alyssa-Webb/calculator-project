@@ -1,46 +1,41 @@
 `timescale 1ns / 1ps
 module Top_tb;
-    logic clk = 0;
-    logic rst, write_enable;
-    logic        [3:0]  data_in;
-    logic        [1:0]  load_value;
-    logic signed [10:0] Result;
+    logic        clk = 0;
+    logic [15:0] sw  = 0;
+    logic [3:0]  btn = 0;
+    logic [15:0] led;
 
-    Top dut (
+    // Short debounce (4 clocks) so the simulation doesn't take millions of cycles
+    Top #(.DEBOUNCE(4)) dut (
         .clk(clk),
-        .rst(rst),
-        .data_in(data_in),
-        .load_value(load_value),
-        .write_enable(write_enable),
-        .Result(Result)
+        .sw(sw),
+        .btn(btn),
+        .led(led)
     );
 
-    always #5 clk = ~clk;   // 10 ns clock: rising edges at 5, 15, 25, ...
+    always #5 clk = ~clk;   // 10 ns clock
+
+    // Press btn[0] like a person: it bounces, then is held for many clocks
+    task press(input logic [3:0] key, input logic [1:0] dest);
+        sw[3:0] = key;  sw[5:4] = dest;
+        btn[0] = 1;  #7  btn[0] = 0;  #6  btn[0] = 1;   // bounce
+        #300  btn[0] = 0;                               // hold 30 clocks, release
+        #200;
+    endtask
 
     initial begin
-
-        // temporary, so i can see the waveform using surfer 
         $dumpfile("wave.vcd");
         $dumpvars(0, Top_tb);
 
-        // At the beginning, registers are empty "XXX"
+        // Reset with btn[3]
+        btn[3] = 1;  #30  btn[3] = 0;  #20;
 
-        // Reset
-        rst = 1; write_enable = 0; load_value = 2'b00; data_in = 0;
-        #12 rst = 0;
+        press(4'd1, 2'b00);   // Operand1: 1
+        press(4'd7, 2'b00);   // Operand1: 17
+        press(4'd3, 2'b01);   // Operand2: 3
+        press(4'd0, 2'b10);   // Operator: add
+        press(4'd0, 2'b11);   // store Result
 
-        // Operand1 = 10 + 7
-        data_in = 4'd1;  load_value = 2'b00;  write_enable = 1;  #10  write_enable = 0;  #10;
-        data_in = 4'd7;  load_value = 2'b00;  write_enable = 1;  #10  write_enable = 0;  #10;
-        
-        // Operand2 = 3
-        data_in = 4'd3;  load_value = 2'b01;  write_enable = 1;  #10  
-
-        // Operator = 00 (add)
-        data_in = 4'd0;  load_value = 2'b10;  write_enable = 1;  #10  
-
-        // Store the ALU's answer in Result
-        load_value = 2'b11;  write_enable = 1;  #10  write_enable = 0; #10
         $finish;
     end
 endmodule
