@@ -3,7 +3,7 @@ module ALU_tb;
     logic signed [10:0] Operand1;
     logic signed [10:0] Operand2;
     logic [1:0]  Operator;
-    logic [10:0] Result;
+    logic signed [10:0] Result;
 
     ALU dut (
         .Operand1(Operand1),

@@ -3,7 +3,7 @@ module MEM_tb;
     logic clk = 0;
     logic rst, write_enable;
     logic        [3:0]  data_in;
-    logic signed [10:0] result;
+    logic signed [10:0] alu_result;
     logic        [1:0]  load_value;
     logic signed [10:0] Operand1, Operand2, Result;
     logic        [1:0]  Operator;
@@ -12,7 +12,7 @@ module MEM_tb;
         .clk(clk),
         .rst(rst),
         .data_in(data_in),
-        .result(result),
+        .alu_result(alu_result),
         .load_value(load_value),
         .write_enable(write_enable),
         .Operand1(Operand1),
@@ -29,7 +29,7 @@ module MEM_tb;
 
         // Reset
         rst = 1; write_enable = 0; load_value = 2'b00;
-        data_in = 0; result = 0;
+        data_in = 0; alu_result = 0;
         #12 rst = 0;
 
         // Load Operand1: press key 7 with load_value = 00
