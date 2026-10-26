@@ -1,13 +1,17 @@
-// Top level: Memory + ALU on the Boolean Board.
+// Top level: Memory + ALU + Display on the Boolean Board.
 //   sw[3:0] = key value    sw[5:4] = which register (00 Op1, 01 Op2, 10 Operator, 11 Result)
-//   btn[0]  = enter        btn[3]  = reset        led[10:0] = Result
+//   btn[0]  = enter        btn[3]  = reset
+//   7-segment display 0 and led[10:0] = Result
 module Top #(
-    parameter int SLOW = 20        // check the button every 2^20 clocks (~10 ms)
+    parameter int SLOW = 20,       // check the button every 2^SLOW clocks (~10 ms)
+    parameter int SLOT = 16        // each display digit gets 2^SLOT clocks (~0.66 ms)
 )(
     input  logic        clk,
     input  logic [15:0] sw,
     input  logic [3:0]  btn,
-    output logic [15:0] led
+    output logic [15:0] led,
+    output logic [3:0]  D0_AN,
+    output logic [7:0]  D0_SEG
 );
     logic signed [10:0] Operand1, Operand2, alu_result, Result;
     logic        [1:0]  Operator;
@@ -39,5 +43,9 @@ module Top #(
         .Result(alu_result)
     );
 
-    assign led = {5'b0, Result};
+    Display #(.SLOT(SLOT)) display (
+        .clk(clk), .rst(btn[3]),
+        .Result(Result),
+        .D0_AN(D0_AN), .D0_SEG(D0_SEG), .led(led)
+    );
 endmodule
