@@ -43,7 +43,7 @@ module Top #(
         .Result(alu_result)
     );
 
-    Display #(.SLOT(SLOT)) display (
+    DIS #(.SLOT(SLOT)) display (
         .clk(clk), .rst(btn[3]),
         .Result(Result),
         .D0_AN(D0_AN), .D0_SEG(D0_SEG), .led(led)

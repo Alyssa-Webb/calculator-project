@@ -1,0 +1,91 @@
+$date
+	Mon Nov  2 16:39:20 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module MEM_tb $end
+$var wire 11 ! Result [10:0] $end
+$var wire 2 " Operator [1:0] $end
+$var wire 11 # Operand2 [10:0] $end
+$var wire 11 $ Operand1 [10:0] $end
+$var reg 11 % alu_result [10:0] $end
+$var reg 1 & clk $end
+$var reg 4 ' data_in [3:0] $end
+$var reg 2 ( load_value [1:0] $end
+$var reg 1 ) rst $end
+$var reg 1 * write_enable $end
+$scope module dut $end
+$var wire 11 + alu_result [10:0] $end
+$var wire 1 & clk $end
+$var wire 4 , data_in [3:0] $end
+$var wire 2 - load_value [1:0] $end
+$var wire 1 ) rst $end
+$var wire 1 * write_enable $end
+$var reg 11 . Operand1 [10:0] $end
+$var reg 11 / Operand2 [10:0] $end
+$var reg 2 0 Operator [1:0] $end
+$var reg 11 1 Result [10:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx 1
+bx 0
+bx /
+bx .
+b0 -
+b0 ,
+b0 +
+0*
+1)
+b0 (
+b0 '
+0&
+b0 %
+bx $
+bx #
+bx "
+bx !
+$end
+#5000
+b0 !
+b0 1
+b0 "
+b0 0
+b0 #
+b0 /
+b0 $
+b0 .
+1&
+#10000
+0&
+#12000
+1*
+b111 '
+b111 ,
+0)
+#15000
+b111 $
+b111 .
+1&
+#20000
+0&
+#22000
+1)
+0*
+#25000
+b0 $
+b0 .
+1&
+#30000
+0&
+#32000
+0)

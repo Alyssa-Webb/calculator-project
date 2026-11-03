@@ -1,0 +1,52 @@
+$date
+	Mon Nov  2 16:39:20 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ALU_tb $end
+$var wire 11 ! Result [10:0] $end
+$var reg 11 " Operand1 [10:0] $end
+$var reg 11 # Operand2 [10:0] $end
+$var reg 2 $ Operator [1:0] $end
+$scope module dut $end
+$var wire 11 % Operand1 [10:0] $end
+$var wire 11 & Operand2 [10:0] $end
+$var wire 2 ' Operator [1:0] $end
+$var reg 11 ( Result [10:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1111 (
+b0 '
+b101 &
+b1010 %
+b0 $
+b101 #
+b1010 "
+b1111 !
+$end
+#10000
+b101 !
+b101 (
+b1 $
+b1 '
+#20000
+b110010 !
+b110010 (
+b10 $
+b10 '
+#30000
+b10 !
+b10 (
+b11 $
+b11 '
+#40000
