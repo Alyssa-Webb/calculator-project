@@ -7,7 +7,7 @@ module INP_tb;
     logic [3:0] data;
     logic [1:0] key_type;
     logic       valid;
-    logic       press_5 = 0;
+    logic       press5 = 0;
 
     INP #(.TickCount(20), .GapCount(5), .WaitTick(4)) dut (.*);
 
