@@ -76,16 +76,10 @@ set_property -dict {PACKAGE_PIN D12 IOSTANDARD LVCMOS33 PULLDOWN true} [get_port
 set_property -dict {PACKAGE_PIN C13 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {col[2]}]  ;# pin 9
 
 # 1x4 keypad on Pmod B (common wire on 3V3)
-set_property -dict {PACKAGE_PIN B15 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[0]}]   ;# pin 1 (+)
-set_property -dict {PACKAGE_PIN A15 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[1]}]   ;# pin 2 (-)
-set_property -dict {PACKAGE_PIN B16 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[2]}]   ;# pin 3 (x)
-set_property -dict {PACKAGE_PIN A16 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[3]}]   ;# pin 4 (/)
-
-# 1x4 keypad on Pmod B (common wire on 3V3)
-set_property -dict {PACKAGE_PIN A15 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[0]}]   ;# pin 1 (+)
-set_property -dict {PACKAGE_PIN B15 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[1]}]   ;# pin 2 (-)
-set_property -dict {PACKAGE_PIN B17 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[2]}]   ;# pin 3 (x)
-set_property -dict {PACKAGE_PIN A17 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[3]}]   ;# pin 4(/)
+set_property -dict {PACKAGE_PIN B15 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[0]}]   ;# (+)
+set_property -dict {PACKAGE_PIN A15 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[1]}]   ;# (-)
+set_property -dict {PACKAGE_PIN A17 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[2]}]   ;# (x)
+set_property -dict {PACKAGE_PIN B17 IOSTANDARD LVCMOS33 PULLDOWN true} [get_ports {op[3]}]   ;# (/)
 
 
 # --- UNUSED IN PROJECT 2
